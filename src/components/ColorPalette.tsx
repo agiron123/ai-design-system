@@ -16,12 +16,18 @@ interface ColorPaletteProps {
   onChange: (theme: DesignTheme) => void;
 }
 
-function ColorSwatch({ color, onClick }: { color: string; onClick: () => void }) {
+function ColorSwatch({
+  color,
+  onClick,
+}: {
+  color: string;
+  onClick: () => void;
+}) {
   return (
     <div
       className={cn(
         'w-10 h-10 rounded-md border cursor-pointer transition-transform hover:scale-105 active:scale-95',
-        color.includes('background') && 'ring-1 ring-border'
+        color.includes('background') && 'ring-1 ring-border',
       )}
       style={{ backgroundColor: color }}
       onClick={onClick}
@@ -30,7 +36,9 @@ function ColorSwatch({ color, onClick }: { color: string; onClick: () => void })
 }
 
 export default function ColorPalette({ theme, onChange }: ColorPaletteProps) {
-  const [activeColor, setActiveColor] = useState<keyof DesignTheme | null>(null);
+  const [activeColor, setActiveColor] = useState<keyof DesignTheme | null>(
+    null,
+  );
   const [hsl, setHSL] = useState({ h: 0, s: 50, l: 50 });
 
   const updateColor = (key: keyof DesignTheme, value: string) => {
@@ -135,21 +143,11 @@ export default function ColorPalette({ theme, onChange }: ColorPaletteProps) {
         <div className="grid gap-4">
           <div className="space-y-2">
             <Label>Saturation</Label>
-            <Slider
-              defaultValue={[50]}
-              max={100}
-              step={1}
-              className="w-full"
-            />
+            <Slider defaultValue={[50]} max={100} step={1} className="w-full" />
           </div>
           <div className="space-y-2">
             <Label>Brightness</Label>
-            <Slider
-              defaultValue={[50]}
-              max={100}
-              step={1}
-              className="w-full"
-            />
+            <Slider defaultValue={[50]} max={100} step={1} className="w-full" />
           </div>
         </div>
       </Card>

@@ -8,7 +8,13 @@ import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Checkbox } from '@/components/ui/checkbox';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, Bell, Check, ChevronsUpDown } from 'lucide-react';
@@ -53,7 +59,7 @@ export default function ComponentGallery() {
                 <Badge variant="outline">Outline</Badge>
                 <Badge variant="destructive">Destructive</Badge>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
@@ -126,8 +132,12 @@ export default function ComponentGallery() {
                   <TabsTrigger value="tab2">Settings</TabsTrigger>
                   <TabsTrigger value="tab3">Messages</TabsTrigger>
                 </TabsList>
-                <TabsContent value="tab1">Account settings and preferences</TabsContent>
-                <TabsContent value="tab2">System configuration options</TabsContent>
+                <TabsContent value="tab1">
+                  Account settings and preferences
+                </TabsContent>
+                <TabsContent value="tab2">
+                  System configuration options
+                </TabsContent>
                 <TabsContent value="tab3">Your message inbox</TabsContent>
               </Tabs>
 
@@ -144,7 +154,9 @@ export default function ComponentGallery() {
                   <DropdownMenuItem>Settings</DropdownMenuItem>
                   <DropdownMenuItem>Notifications</DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-red-600">Log out</DropdownMenuItem>
+                  <DropdownMenuItem className="text-red-600">
+                    Log out
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
