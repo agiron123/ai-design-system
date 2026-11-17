@@ -14,7 +14,7 @@ interface ThemePreviewProps {
   };
 }
 
-export default function ThemePreview({ theme }: ThemePreviewProps) {
+export default function ThemePreview(_props: ThemePreviewProps) {
   return (
     <Card className="p-6">
       <ScrollArea className="h-[calc(100vh-12rem)]">

@@ -14,7 +14,7 @@ interface AIRecommendationsProps {
   onApply: (theme: any) => void;
 }
 
-export default function AIRecommendations({ theme, onApply }: AIRecommendationsProps) {
+export default function AIRecommendations({ onApply }: AIRecommendationsProps) {
   const suggestions = [
     {
       name: 'Modern Tech',

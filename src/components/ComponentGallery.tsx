@@ -31,7 +31,7 @@ interface ComponentGalleryProps {
   };
 }
 
-export default function ComponentGallery({ theme }: ComponentGalleryProps) {
+export default function ComponentGallery(_props: ComponentGalleryProps) {
   return (
     <Card className="p-6">
       <ScrollArea className="h-[calc(100vh-12rem)]">
