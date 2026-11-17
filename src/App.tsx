@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import type { DesignTheme } from '@/lib/theme';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card } from '@/components/ui/card';
-import { Paintbrush, Palette, Box, Wand2, Download } from 'lucide-react';
+import { Paintbrush, Palette, Box, Wand2 } from 'lucide-react';
 import ThemePreview from '@/components/ThemePreview';
 import ColorPalette from '@/components/ColorPalette';
 import ComponentGallery from '@/components/ComponentGallery';
-import AIRecommendations from '@/components/AIRecommendations';
 
 function App() {
   const [activeTheme, setActiveTheme] = useState<DesignTheme>({
@@ -24,12 +21,6 @@ function App() {
         <div className="container flex items-center h-16 px-4 mx-auto">
           <Wand2 className="w-6 h-6 mr-2" />
           <h1 className="text-xl font-bold">Design System AI</h1>
-          <div className="flex items-center ml-auto space-x-2">
-            <Button variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              Export Theme
-            </Button>
-          </div>
         </div>
       </header>
 
@@ -50,23 +41,17 @@ function App() {
             </TabsTrigger>
           </TabsList>
 
-          <div className="grid gap-6 md:grid-cols-[1fr,300px]">
-            <TabsContent value="palette" className="m-0">
-              <ColorPalette theme={activeTheme} onChange={setActiveTheme} />
-            </TabsContent>
+          <TabsContent value="palette" className="m-0">
+            <ColorPalette theme={activeTheme} onChange={setActiveTheme} />
+          </TabsContent>
 
-            <TabsContent value="components" className="m-0">
-              <ComponentGallery />
-            </TabsContent>
+          <TabsContent value="components" className="m-0">
+            <ComponentGallery />
+          </TabsContent>
 
-            <TabsContent value="preview" className="m-0">
-              <ThemePreview />
-            </TabsContent>
-
-            <Card className="p-4">
-              <AIRecommendations theme={activeTheme} onApply={setActiveTheme} />
-            </Card>
-          </div>
+          <TabsContent value="preview" className="m-0">
+            <ThemePreview />
+          </TabsContent>
         </Tabs>
       </main>
     </div>
