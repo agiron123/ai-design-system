@@ -10,10 +10,12 @@ export default function ThemePreview() {
       <ScrollArea className="h-[calc(100vh-12rem)]">
         <div className="max-w-4xl mx-auto space-y-8">
           <section className="space-y-4">
-            <h2 className="text-3xl font-bold">Welcome to Your Design System</h2>
+            <h2 className="text-3xl font-bold">
+              Welcome to Your Design System
+            </h2>
             <p className="text-lg text-muted-foreground">
-              This preview shows how your components and colors work together in a
-              real-world context.
+              This preview shows how your components and colors work together in
+              a real-world context.
             </p>
             <div className="flex gap-4">
               <Button>Get Started</Button>
