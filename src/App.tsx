@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import type { DesignTheme } from '@/lib/theme';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
 import { Paintbrush, Palette, Box, Wand2, Download } from 'lucide-react';
@@ -9,7 +10,7 @@ import ComponentGallery from '@/components/ComponentGallery';
 import AIRecommendations from '@/components/AIRecommendations';
 
 function App() {
-  const [activeTheme, setActiveTheme] = useState({
+  const [activeTheme, setActiveTheme] = useState<DesignTheme>({
     primary: 'hsl(220 70% 50%)',
     secondary: 'hsl(280 65% 60%)',
     accent: 'hsl(160 60% 45%)',
@@ -55,11 +56,11 @@ function App() {
             </TabsContent>
 
             <TabsContent value="components" className="m-0">
-              <ComponentGallery theme={activeTheme} />
+              <ComponentGallery />
             </TabsContent>
 
             <TabsContent value="preview" className="m-0">
-              <ThemePreview theme={activeTheme} />
+              <ThemePreview />
             </TabsContent>
 
             <Card className="p-4">

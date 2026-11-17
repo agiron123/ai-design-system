@@ -4,6 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { cn } from '@/lib/utils';
+import type { DesignTheme } from '@/lib/theme';
 import {
   Popover,
   PopoverContent,
@@ -11,14 +12,8 @@ import {
 } from '@/components/ui/popover';
 
 interface ColorPaletteProps {
-  theme: {
-    primary: string;
-    secondary: string;
-    accent: string;
-    background: string;
-    foreground: string;
-  };
-  onChange: (theme: any) => void;
+  theme: DesignTheme;
+  onChange: (theme: DesignTheme) => void;
 }
 
 function ColorSwatch({ color, onClick }: { color: string; onClick: () => void }) {
@@ -35,10 +30,10 @@ function ColorSwatch({ color, onClick }: { color: string; onClick: () => void })
 }
 
 export default function ColorPalette({ theme, onChange }: ColorPaletteProps) {
-  const [activeColor, setActiveColor] = useState<string | null>(null);
+  const [activeColor, setActiveColor] = useState<keyof DesignTheme | null>(null);
   const [hsl, setHSL] = useState({ h: 0, s: 50, l: 50 });
 
-  const updateColor = (key: string, value: string) => {
+  const updateColor = (key: keyof DesignTheme, value: string) => {
     onChange({ ...theme, [key]: value });
   };
 
@@ -50,7 +45,7 @@ export default function ColorPalette({ theme, onChange }: ColorPaletteProps) {
     }
   };
 
-  const handleColorClick = (key: string, value: string) => {
+  const handleColorClick = (key: keyof DesignTheme, value: string) => {
     setActiveColor(key);
     // Parse the current HSL values
     if (value.startsWith('hsl')) {
@@ -70,65 +65,68 @@ export default function ColorPalette({ theme, onChange }: ColorPaletteProps) {
       <Card className="p-6">
         <h2 className="mb-4 text-lg font-semibold">Brand Colors</h2>
         <div className="grid gap-4">
-          {Object.entries(theme).map(([key, value]) => (
-            <div key={key} className="space-y-2">
-              <Label className="capitalize">{key}</Label>
-              <div className="flex items-center gap-4">
-                <Popover>
-                  <PopoverTrigger>
-                    <ColorSwatch
-                      color={value}
-                      onClick={() => handleColorClick(key, value)}
-                    />
-                  </PopoverTrigger>
-                  <PopoverContent className="w-80">
-                    <div className="grid gap-4">
-                      <div
-                        className="h-40 rounded-md"
-                        style={{
-                          backgroundColor: `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`,
-                        }}
+          {(Object.keys(theme) as (keyof DesignTheme)[]).map((key) => {
+            const value = theme[key];
+            return (
+              <div key={key} className="space-y-2">
+                <Label className="capitalize">{key}</Label>
+                <div className="flex items-center gap-4">
+                  <Popover>
+                    <PopoverTrigger>
+                      <ColorSwatch
+                        color={value}
+                        onClick={() => handleColorClick(key, value)}
                       />
-                      <div className="grid gap-2">
-                        <Label>Hue</Label>
-                        <Slider
-                          value={[hsl.h]}
-                          max={360}
-                          step={1}
-                          onValueChange={([value]) =>
-                            handleHSLChange('h', value)
-                          }
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80">
+                      <div className="grid gap-4">
+                        <div
+                          className="h-40 rounded-md"
+                          style={{
+                            backgroundColor: `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`,
+                          }}
                         />
-                        <Label>Saturation</Label>
-                        <Slider
-                          value={[hsl.s]}
-                          max={100}
-                          step={1}
-                          onValueChange={([value]) =>
-                            handleHSLChange('s', value)
-                          }
-                        />
-                        <Label>Lightness</Label>
-                        <Slider
-                          value={[hsl.l]}
-                          max={100}
-                          step={1}
-                          onValueChange={([value]) =>
-                            handleHSLChange('l', value)
-                          }
-                        />
+                        <div className="grid gap-2">
+                          <Label>Hue</Label>
+                          <Slider
+                            value={[hsl.h]}
+                            max={360}
+                            step={1}
+                            onValueChange={([value]) =>
+                              handleHSLChange('h', value)
+                            }
+                          />
+                          <Label>Saturation</Label>
+                          <Slider
+                            value={[hsl.s]}
+                            max={100}
+                            step={1}
+                            onValueChange={([value]) =>
+                              handleHSLChange('s', value)
+                            }
+                          />
+                          <Label>Lightness</Label>
+                          <Slider
+                            value={[hsl.l]}
+                            max={100}
+                            step={1}
+                            onValueChange={([value]) =>
+                              handleHSLChange('l', value)
+                            }
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-                <Input
-                  value={value}
-                  onChange={(e) => updateColor(key, e.target.value)}
-                  className="font-mono"
-                />
+                    </PopoverContent>
+                  </Popover>
+                  <Input
+                    value={value}
+                    onChange={(e) => updateColor(key, e.target.value)}
+                    className="font-mono"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Card>
 

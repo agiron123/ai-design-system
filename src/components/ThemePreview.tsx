@@ -4,17 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-interface ThemePreviewProps {
-  theme: {
-    primary: string;
-    secondary: string;
-    accent: string;
-    background: string;
-    foreground: string;
-  };
-}
-
-export default function ThemePreview(_props: ThemePreviewProps) {
+export default function ThemePreview() {
   return (
     <Card className="p-6">
       <ScrollArea className="h-[calc(100vh-12rem)]">

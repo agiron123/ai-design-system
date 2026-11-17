@@ -2,16 +2,11 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Wand2 } from 'lucide-react';
+import type { DesignTheme } from '@/lib/theme';
 
 interface AIRecommendationsProps {
-  theme: {
-    primary: string;
-    secondary: string;
-    accent: string;
-    background: string;
-    foreground: string;
-  };
-  onApply: (theme: any) => void;
+  theme: DesignTheme;
+  onApply: (theme: DesignTheme) => void;
 }
 
 export default function AIRecommendations({ onApply }: AIRecommendationsProps) {

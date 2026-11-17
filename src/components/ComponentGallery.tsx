@@ -21,17 +21,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-interface ComponentGalleryProps {
-  theme: {
-    primary: string;
-    secondary: string;
-    accent: string;
-    background: string;
-    foreground: string;
-  };
-}
-
-export default function ComponentGallery(_props: ComponentGalleryProps) {
+export default function ComponentGallery() {
   return (
     <Card className="p-6">
       <ScrollArea className="h-[calc(100vh-12rem)]">
